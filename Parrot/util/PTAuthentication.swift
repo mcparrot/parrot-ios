@@ -14,10 +14,14 @@ var pocketRequestCode = ""
 var pocketAccessToken = ""
 var pocketUsername = ""
 
+let pocketAuthenticatedNotification = "PTPocketAuthenticated"
+
 func authenticatePocket() {
     let accessToken = SSKeychain.passwordForService("parrot", account: "pocket")
     if let at = accessToken {
+        println(accessToken)
         pocketAccessToken = accessToken
+        NSNotificationCenter.defaultCenter().postNotificationName(pocketAuthenticatedNotification, object: nil)
         // ???
     } else {
         let url = NSURL(string: "https://getpocket.com/v3/oauth/request")!
@@ -52,5 +56,6 @@ func authenticatePocketWithURL(url: NSURL) {
         pocketUsername = stuff[1].componentsSeparatedByString("=")[1]
         
         SSKeychain.setPassword(pocketAccessToken, forService: "parrot", account: "pocket")
+        NSNotificationCenter.defaultCenter().postNotificationName(pocketAuthenticatedNotification, object: nil)
     }
 }

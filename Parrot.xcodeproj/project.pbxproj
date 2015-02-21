@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BE273B2BD62A7C09D331A983 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A7FD1894AC324D71C088677 /* libPods.a */; };
 		EB0FDF881A990FCC003B66E0 /* PTAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FDF871A990FCC003B66E0 /* PTAuthentication.swift */; };
+		EB0FDF8A1A99215F003B66E0 /* PTObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FDF891A99215F003B66E0 /* PTObject.swift */; };
+		EB0FDF8C1A99232D003B66E0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FDF8B1A99232D003B66E0 /* Common.swift */; };
 		EBA1F84D1A98FD04000C2F8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA1F84C1A98FD04000C2F8C /* AppDelegate.swift */; };
 		EBA1F84F1A98FD04000C2F8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA1F84E1A98FD04000C2F8C /* ViewController.swift */; };
 		EBA1F8521A98FD04000C2F8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA1F8501A98FD04000C2F8C /* Main.storyboard */; };
@@ -33,6 +35,8 @@
 		C4D8DC082EB5A7DC8B69F410 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EB0FDF841A990208003B66E0 /* ObjectiveBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveBridge.h; sourceTree = "<group>"; };
 		EB0FDF871A990FCC003B66E0 /* PTAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTAuthentication.swift; sourceTree = "<group>"; };
+		EB0FDF891A99215F003B66E0 /* PTObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTObject.swift; sourceTree = "<group>"; };
+		EB0FDF8B1A99232D003B66E0 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		EBA1F8471A98FD04000C2F8C /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA1F84B1A98FD04000C2F8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBA1F84C1A98FD04000C2F8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 			children = (
 				EB0FDF841A990208003B66E0 /* ObjectiveBridge.h */,
 				EB0FDF871A990FCC003B66E0 /* PTAuthentication.swift */,
+				EB0FDF891A99215F003B66E0 /* PTObject.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 				EBA1F8551A98FD04000C2F8C /* LaunchScreen.xib */,
 				EB0FDF821A9901DA003B66E0 /* util */,
 				EBA1F84A1A98FD04000C2F8C /* Supporting Files */,
+				EB0FDF8B1A99232D003B66E0 /* Common.swift */,
 			);
 			path = Parrot;
 			sourceTree = "<group>";
@@ -301,8 +307,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB0FDF8A1A99215F003B66E0 /* PTObject.swift in Sources */,
 				EBA1F84F1A98FD04000C2F8C /* ViewController.swift in Sources */,
 				EB0FDF881A990FCC003B66E0 /* PTAuthentication.swift in Sources */,
+				EB0FDF8C1A99232D003B66E0 /* Common.swift in Sources */,
 				EBA1F84D1A98FD04000C2F8C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
