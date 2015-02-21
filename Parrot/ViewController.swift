@@ -12,14 +12,18 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        PocketAPI.sharedAPI().loginWithHandler { (api, error) -> Void in
+            if error != nil {
+                println(error.localizedDescription)
+            } else {
+                let key = "
+                let token = NSUserDefaults.standardUserDefaults().objectForKey("PocketAPI.token") as String
+                println(token)
+                /*PocketAPI.sharedAPI().callAPIMethod("get", withHTTPMethod: PocketAPIHTTPMethodPOST, arguments: ["state": "unread"], handler: { (api, method, response, error) -> Void in
+                    println("done")
+                })*/
+            }
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
-
