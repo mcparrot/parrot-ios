@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var wordLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +56,35 @@ class ViewController: UIViewController {
                 }
             }
             
-            println(objects.count)
+            self.retrieveText()
         }
+    }
+    
+    func retrieveText() {
+        for object in objects {
+            let url = NSURL(string: "http://api.diffbot.com/v3/article?token=\(diffbotToken)&url=\(object.url)")!
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "GET"
+            
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response, data, error) -> Void in
+                if let result = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
+                    if let objs = result["objects"] as? NSArray {
+                        for obj in objs {
+                            if let objct = obj as? NSDictionary {
+                                if let text = objct["text"] as? String {
+                                    object.text = text
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                self.retrievalDone()
+            })
+        }
+    }
+    
+    func retrievalDone() {
+        let text = objects[0].text
     }
 }

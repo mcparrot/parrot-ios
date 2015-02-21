@@ -16,4 +16,5 @@ class PTObject: NSObject {
     var status = 0
     var is_article = true
     var word_count = 0
+    var text: String!
 }

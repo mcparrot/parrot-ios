@@ -59,3 +59,6 @@ func authenticatePocketWithURL(url: NSURL) {
         NSNotificationCenter.defaultCenter().postNotificationName(pocketAuthenticatedNotification, object: nil)
     }
 }
+
+
+let diffbotToken = "0d5c56d2a7a3a5a4ad6c644b326993c2"
