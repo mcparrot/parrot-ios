@@ -12,6 +12,9 @@ class ViewController: UIViewController {
 
     @IBOutlet var wordLabel: UILabel!
     
+    var words = [String]()
+    var current = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,5 +89,15 @@ class ViewController: UIViewController {
     
     func retrievalDone() {
         let text = objects[0].text
+        for word in text.componentsSeparatedByString(" ") {
+            words.append(word)
+        }
+        
+        let timer = NSTimer.scheduledTimerWithTimeInterval(1 / 6, target: self, selector: "updateWord", userInfo: nil, repeats: true)
+    }
+    
+    func updateWord() {
+        wordLabel.text = words[current]
+        current += 1
     }
 }
