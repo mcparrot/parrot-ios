@@ -10,7 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var titleLabel: UILabel!
     @IBOutlet var wordLabel: UILabel!
+    
+    @IBOutlet var speedSlider: PTSlider!
+    @IBOutlet var progressSlider: PTSlider!
     
     var words = [String]()
     var current = 0
@@ -21,6 +25,12 @@ class ViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pocketAuthenticated", name: pocketAuthenticatedNotification, object: nil)
         
         authenticatePocket()
+        
+        speedSlider.configureFlatSliderWithTrackColor(UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1), progressColor: UIColor(red: 1, green: 0.81, blue: 0.77, alpha: 1), thumbColor: UIColor(red: 0.96, green: 0.31, blue: 0.18, alpha: 1))
+        progressSlider.configureFlatSliderWithTrackColor(UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1), progressColor: UIColor(red: 1, green: 0.81, blue: 0.77, alpha: 1), thumbColor: UIColor(red: 0.96, green: 0.31, blue: 0.18, alpha: 1))
+        
+        progressSlider.setThumbImage(UIImage(), forState: .Normal)
+        progressSlider.userInteractionEnabled = false
     }
     
     func pocketAuthenticated() {
@@ -99,5 +109,9 @@ class ViewController: UIViewController {
     func updateWord() {
         wordLabel.text = words[current]
         current += 1
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 }

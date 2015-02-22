@@ -8,7 +8,7 @@
 
 import UIKit
 
-let pocketConsumerKey = "38311-2a981099b43e762b56a03932"
+let pocketConsumerKey = "38321-0d999ea0805d69d4f050b96b"
 let pocketRedirectUri = "parrot-login://pocket"
 var pocketRequestCode = ""
 var pocketAccessToken = ""

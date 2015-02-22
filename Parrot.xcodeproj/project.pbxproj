@@ -11,6 +11,15 @@
 		EB0FDF881A990FCC003B66E0 /* PTAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FDF871A990FCC003B66E0 /* PTAuthentication.swift */; };
 		EB0FDF8A1A99215F003B66E0 /* PTObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FDF891A99215F003B66E0 /* PTObject.swift */; };
 		EB0FDF8C1A99232D003B66E0 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0FDF8B1A99232D003B66E0 /* Common.swift */; };
+		EB540EA31A9936C1002B9034 /* back-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EB540EA11A9936C1002B9034 /* back-arrow.png */; };
+		EB540EA41A9936C1002B9034 /* pull-up.png in Resources */ = {isa = PBXBuildFile; fileRef = EB540EA21A9936C1002B9034 /* pull-up.png */; };
+		EB540EAA1A994A5E002B9034 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = EB540EA51A994A5E002B9034 /* book.png */; };
+		EB540EAB1A994A5E002B9034 /* bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = EB540EA61A994A5E002B9034 /* bookmark.png */; };
+		EB540EAC1A994A5E002B9034 /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = EB540EA71A994A5E002B9034 /* favorite.png */; };
+		EB540EAD1A994A5E002B9034 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = EB540EA81A994A5E002B9034 /* share.png */; };
+		EB540EAE1A994A5E002B9034 /* speed.png in Resources */ = {isa = PBXBuildFile; fileRef = EB540EA91A994A5E002B9034 /* speed.png */; };
+		EB540EB01A994C27002B9034 /* PTUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB540EAF1A994C27002B9034 /* PTUtilities.swift */; };
+		EB540EB41A994DA2002B9034 /* thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = EB540EB31A994DA2002B9034 /* thumb.png */; };
 		EBA1F84D1A98FD04000C2F8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA1F84C1A98FD04000C2F8C /* AppDelegate.swift */; };
 		EBA1F84F1A98FD04000C2F8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA1F84E1A98FD04000C2F8C /* ViewController.swift */; };
 		EBA1F8521A98FD04000C2F8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA1F8501A98FD04000C2F8C /* Main.storyboard */; };
@@ -37,6 +46,15 @@
 		EB0FDF871A990FCC003B66E0 /* PTAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTAuthentication.swift; sourceTree = "<group>"; };
 		EB0FDF891A99215F003B66E0 /* PTObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTObject.swift; sourceTree = "<group>"; };
 		EB0FDF8B1A99232D003B66E0 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		EB540EA11A9936C1002B9034 /* back-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-arrow.png"; sourceTree = "<group>"; };
+		EB540EA21A9936C1002B9034 /* pull-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pull-up.png"; sourceTree = "<group>"; };
+		EB540EA51A994A5E002B9034 /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book.png; sourceTree = "<group>"; };
+		EB540EA61A994A5E002B9034 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
+		EB540EA71A994A5E002B9034 /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
+		EB540EA81A994A5E002B9034 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		EB540EA91A994A5E002B9034 /* speed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speed.png; sourceTree = "<group>"; };
+		EB540EAF1A994C27002B9034 /* PTUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTUtilities.swift; sourceTree = "<group>"; };
+		EB540EB31A994DA2002B9034 /* thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumb.png; sourceTree = "<group>"; };
 		EBA1F8471A98FD04000C2F8C /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA1F84B1A98FD04000C2F8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBA1F84C1A98FD04000C2F8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +106,14 @@
 		EB0FDF811A9901DA003B66E0 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				EB540EB31A994DA2002B9034 /* thumb.png */,
+				EB540EA51A994A5E002B9034 /* book.png */,
+				EB540EA61A994A5E002B9034 /* bookmark.png */,
+				EB540EA71A994A5E002B9034 /* favorite.png */,
+				EB540EA81A994A5E002B9034 /* share.png */,
+				EB540EA91A994A5E002B9034 /* speed.png */,
+				EB540EA11A9936C1002B9034 /* back-arrow.png */,
+				EB540EA21A9936C1002B9034 /* pull-up.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -98,6 +124,7 @@
 				EB0FDF841A990208003B66E0 /* ObjectiveBridge.h */,
 				EB0FDF871A990FCC003B66E0 /* PTAuthentication.swift */,
 				EB0FDF891A99215F003B66E0 /* PTObject.swift */,
+				EB540EAF1A994C27002B9034 /* PTUtilities.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -255,8 +282,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBA1F8521A98FD04000C2F8C /* Main.storyboard in Resources */,
+				EB540EAD1A994A5E002B9034 /* share.png in Resources */,
+				EB540EB41A994DA2002B9034 /* thumb.png in Resources */,
 				EBA1F8571A98FD04000C2F8C /* LaunchScreen.xib in Resources */,
+				EB540EAA1A994A5E002B9034 /* book.png in Resources */,
+				EB540EA31A9936C1002B9034 /* back-arrow.png in Resources */,
 				EBA1F8541A98FD04000C2F8C /* Images.xcassets in Resources */,
+				EB540EAB1A994A5E002B9034 /* bookmark.png in Resources */,
+				EB540EA41A9936C1002B9034 /* pull-up.png in Resources */,
+				EB540EAC1A994A5E002B9034 /* favorite.png in Resources */,
+				EB540EAE1A994A5E002B9034 /* speed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB540EB01A994C27002B9034 /* PTUtilities.swift in Sources */,
 				EB0FDF8A1A99215F003B66E0 /* PTObject.swift in Sources */,
 				EBA1F84F1A98FD04000C2F8C /* ViewController.swift in Sources */,
 				EB0FDF881A990FCC003B66E0 /* PTAuthentication.swift in Sources */,
