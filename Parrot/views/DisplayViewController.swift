@@ -120,7 +120,7 @@ class DisplayViewController: UIViewController {
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        if paused && !drawer {
+        if paused && !drawer && countdown == 0 {
             paused = false
         }
     }

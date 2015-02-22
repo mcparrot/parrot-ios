@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading.png" translatesAutoresizingMaskIntoConstraints="NO" id="dAe-KP-W8x">
-                    <rect key="frame" x="80" y="54.5" width="320" height="371"/>
+                    <rect key="frame" x="102" y="80" width="276" height="320"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="dAe-KP-W8x" secondAttribute="height" multiplier="1:1" id="Muy-qJ-LqZ"/>
                         <constraint firstAttribute="width" secondItem="dAe-KP-W8x" secondAttribute="height" multiplier="679:788" id="bLR-xu-YMK"/>
@@ -26,12 +26,25 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dAe-KP-W8x" secondAttribute="trailing" constant="80" id="6sI-pX-3iV"/>
                 <constraint firstItem="dAe-KP-W8x" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="DSc-pF-WQS"/>
+                <constraint firstItem="dAe-KP-W8x" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="80" id="JMx-dp-HNy"/>
+                <constraint firstItem="dAe-KP-W8x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="LeM-xf-e8g"/>
                 <constraint firstAttribute="centerY" secondItem="dAe-KP-W8x" secondAttribute="centerY" id="Wdh-gP-VbC"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dAe-KP-W8x" secondAttribute="bottom" constant="80" id="adF-tI-HIm"/>
+                <constraint firstAttribute="centerX" secondItem="dAe-KP-W8x" secondAttribute="centerX" id="g8a-3Q-CPd"/>
+                <constraint firstAttribute="centerY" secondItem="dAe-KP-W8x" secondAttribute="centerY" id="mXT-C7-M5d"/>
                 <constraint firstAttribute="trailing" secondItem="dAe-KP-W8x" secondAttribute="trailing" constant="80" id="oYF-Jx-WPX"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="DSc-pF-WQS"/>
+                    <exclude reference="Wdh-gP-VbC"/>
+                    <exclude reference="oYF-Jx-WPX"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
