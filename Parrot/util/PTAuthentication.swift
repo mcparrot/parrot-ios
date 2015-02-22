@@ -19,7 +19,6 @@ let pocketAuthenticatedNotification = "PTPocketAuthenticated"
 func authenticatePocket() {
     let accessToken = SSKeychain.passwordForService("parrot", account: "pocket")
     if let at = accessToken {
-        println(accessToken)
         pocketAccessToken = accessToken
         NSNotificationCenter.defaultCenter().postNotificationName(pocketAuthenticatedNotification, object: nil)
         // ???

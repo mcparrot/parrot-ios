@@ -109,6 +109,9 @@ class DisplayViewController: UIViewController {
     }
     
     @IBAction func shareButton(sender: AnyObject) {
+        let controller = UIActivityViewController(activityItems: ["Yay text!", "http://google.ca/"], applicationActivities: nil)
+        controller.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeCopyToPasteboard]
+        self.presentViewController(controller, animated: true, completion: nil)
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

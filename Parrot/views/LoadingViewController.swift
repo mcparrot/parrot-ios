@@ -41,7 +41,6 @@ class LoadingViewController: UIViewController {
                                             if let word_count = dict["word_count"] as? String {
                                                 let object = PTObject()
                                                 object.item_id = item_id.toInt()!
-                                                println(object.item_id)
                                                 object.title = title
                                                 object.url = NSURL(string: url)!
                                                 object.status = status.toInt()!
