@@ -16,8 +16,15 @@ class ViewController: UIViewController {
     @IBOutlet var speedSlider: PTSlider!
     @IBOutlet var progressSlider: PTSlider!
     
+    @IBOutlet var drawerView: UIView!
+    
+    @IBOutlet var drawerButton: UIButton!
+    @IBOutlet var bottomDrawerConstraint: NSLayoutConstraint!
+    
     var words = [String]()
     var current = 0
+    var paused = true
+    var drawer = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +38,21 @@ class ViewController: UIViewController {
         
         progressSlider.setThumbImage(UIImage(), forState: .Normal)
         progressSlider.userInteractionEnabled = false
+    }
+    
+    override func viewDidLayoutSubviews() {
+        println(drawerButton.frame.origin.y)
+    }
+    
+    @IBAction func drawerButton(sender: AnyObject) {
+        bottomDrawerConstraint.constant = drawer ? -298 : 0
+        drawerView.setNeedsUpdateConstraints()
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.drawerView.layoutIfNeeded()
+        })
+        
+        drawer = !drawer
     }
     
     func pocketAuthenticated() {
@@ -107,8 +129,10 @@ class ViewController: UIViewController {
     }
     
     func updateWord() {
-        wordLabel.text = words[current]
-        current += 1
+        if !paused {
+            wordLabel.text = words[current]
+            current += 1
+        }
     }
     
     override func prefersStatusBarHidden() -> Bool {

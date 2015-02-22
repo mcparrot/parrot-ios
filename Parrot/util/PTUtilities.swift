@@ -11,7 +11,6 @@ import UIKit
 class PTSlider: UISlider {
     
     override func trackRectForBounds(bounds: CGRect) -> CGRect {
-        println(NSStringFromCGRect(self.thumbRectForBounds(self.bounds, trackRect: bounds, value: 0)))
         return CGRectMake(0, 0, bounds.width, 15.5)
     }
 }
