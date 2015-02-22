@@ -48,7 +48,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="48 Hours of Hack" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urx-Dz-S2z">
-                                <rect key="frame" x="16" y="15" width="568" height="21"/>
+                                <rect key="frame" x="56" y="15" width="488" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="gGs-2y-R88"/>
                                 </constraints>
@@ -109,19 +109,34 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBA-PK-Zd8">
+                                <rect key="frame" x="562" y="15" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="qGD-tT-52M"/>
+                                    <constraint firstAttribute="width" constant="22" id="yNk-fV-en9"/>
+                                </constraints>
+                                <state key="normal" image="login.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButton:" destination="MK7-VV-cyZ" eventType="touchUpInside" id="GPz-M0-bfZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CeV-0F-W5p" firstAttribute="leading" secondItem="9jv-x7-5RL" secondAttribute="leading" id="1UG-MY-LiE"/>
+                            <constraint firstAttribute="trailing" secondItem="IBA-PK-Zd8" secondAttribute="trailing" constant="16" id="3LN-oL-3oA"/>
                             <constraint firstItem="Pet-zr-17R" firstAttribute="top" secondItem="CeV-0F-W5p" secondAttribute="bottom" id="6xY-Vf-57o"/>
+                            <constraint firstItem="IBA-PK-Zd8" firstAttribute="centerY" secondItem="urx-Dz-S2z" secondAttribute="centerY" constant="0.5" id="7oU-up-h4T"/>
                             <constraint firstItem="CeV-0F-W5p" firstAttribute="top" secondItem="9jv-x7-5RL" secondAttribute="top" constant="51" id="K8L-At-WaI"/>
                             <constraint firstAttribute="trailing" secondItem="CeV-0F-W5p" secondAttribute="trailing" id="LTE-pt-ShR"/>
                             <constraint firstItem="urx-Dz-S2z" firstAttribute="top" secondItem="QLa-Eg-fGh" secondAttribute="bottom" constant="15" id="P4b-q1-XXP"/>
                             <constraint firstItem="Pet-zr-17R" firstAttribute="leading" secondItem="9jv-x7-5RL" secondAttribute="leading" id="QAQ-4S-Oku"/>
-                            <constraint firstItem="urx-Dz-S2z" firstAttribute="leading" secondItem="9jv-x7-5RL" secondAttribute="leading" constant="16" id="bBB-zJ-HlY"/>
+                            <constraint firstItem="urx-Dz-S2z" firstAttribute="leading" secondItem="9jv-x7-5RL" secondAttribute="leading" constant="56" id="bBB-zJ-HlY"/>
                             <constraint firstAttribute="trailing" secondItem="Pet-zr-17R" secondAttribute="trailing" id="lvt-9M-cZW"/>
                             <constraint firstItem="FGz-X5-ECA" firstAttribute="top" secondItem="Pet-zr-17R" secondAttribute="bottom" id="t29-h3-03D"/>
-                            <constraint firstAttribute="trailing" secondItem="urx-Dz-S2z" secondAttribute="trailing" constant="16" id="wWD-Aj-Wb6"/>
+                            <constraint firstAttribute="trailing" secondItem="urx-Dz-S2z" secondAttribute="trailing" constant="56" id="wWD-Aj-Wb6"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -356,13 +371,13 @@
                                     <mask key="constraints">
                                         <exclude reference="2yV-Iv-IzS"/>
                                         <exclude reference="cwl-o7-tkb"/>
-                                        <exclude reference="fbF-kK-TZa"/>
-                                        <exclude reference="c0x-nB-V8I"/>
                                         <exclude reference="7pk-M8-fbn"/>
                                         <exclude reference="WBu-4a-BYY"/>
                                         <exclude reference="dVC-Gc-hI4"/>
                                         <exclude reference="hqg-uE-ys6"/>
                                         <exclude reference="zn2-MP-GrW"/>
+                                        <exclude reference="fbF-kK-TZa"/>
+                                        <exclude reference="c0x-nB-V8I"/>
                                         <exclude reference="a63-jC-yOe"/>
                                         <exclude reference="9ty-xn-CEd"/>
                                         <exclude reference="KOL-jL-4cD"/>
@@ -490,6 +505,7 @@
         <image name="favorite-pressed.png" width="118" height="112"/>
         <image name="favorite.png" width="118" height="112"/>
         <image name="loading.png" width="679" height="788"/>
+        <image name="login.png" width="58" height="58"/>
         <image name="pull-up.png" width="90" height="36"/>
         <image name="search.png" width="48" height="48"/>
         <image name="share-pressed.png" width="106" height="118"/>

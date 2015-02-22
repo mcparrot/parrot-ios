@@ -16,6 +16,8 @@ class LibraryViewController: UIViewController, UITableViewDataSource, UITableVie
     var tableObjects = [PTObject]()
     var objectToSend: PTObject!
     
+    var transparencyView: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,6 +63,71 @@ class LibraryViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         tableView.reloadData()
+    }
+    
+    @IBAction func loginButton(sender: AnyObject) {
+        let deviceSize = UIScreen.mainScreen().bounds
+        
+        transparencyView = UIButton(frame: deviceSize)
+        transparencyView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+        transparencyView.alpha = 0
+        transparencyView.addTarget(self, action: "transparencyButton", forControlEvents: .TouchUpInside)
+        
+        let alert = UIView(frame: CGRectMake(deviceSize.width / 6, deviceSize.height / 3, deviceSize.width * (2/3), deviceSize.height * (1/3)))
+        alert.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        alert.layer.cornerRadius = 12
+        
+        let shadowPath = UIBezierPath(rect: alert.bounds)
+        alert.layer.masksToBounds = false
+        alert.layer.shadowColor = UIColor.blackColor().CGColor
+        alert.layer.shadowOffset = CGSizeMake(0, 0)
+        alert.layer.shadowOpacity = 0.25
+        alert.layer.shadowPath = shadowPath.CGPath
+        
+        let title = UILabel()
+        title.text = "SIGN IN"
+        title.font = UIFont(name: "AvenirNext-Regular", size: 20)
+        title.sizeToFit()
+        title.frame = CGRectMake((alert.frame.size.width - title.frame.size.width) / 2, 26, title.frame.size.width, title.frame.size.height)
+        
+        let pocketButton = UIButton(frame: CGRectMake(32, title.frame.origin.y + title.frame.size.height + 22, alert.frame.size.width - 64, (alert.frame.size.width - 64) * (116/455)))
+        pocketButton.setImage(UIImage(named: "pocket.png"), forState: .Normal)
+        pocketButton.addTarget(self, action: "pocketButton", forControlEvents: .TouchUpInside)
+        
+        let deliciousButton = UIButton(frame: CGRectMake(32, pocketButton.frame.origin.y + pocketButton.frame.size.height + 28, alert.frame.size.width - 64, (alert.frame.size.width - 64) * (87/470)))
+        deliciousButton.setImage(UIImage(named: "delicious.png"), forState: .Normal)
+        deliciousButton.addTarget(self, action: "deliciousButton", forControlEvents: .TouchUpInside)
+        
+        alert.addSubview(title)
+        alert.addSubview(pocketButton)
+        alert.addSubview(deliciousButton)
+        
+        transparencyView.addSubview(alert)
+        self.view.addSubview(transparencyView)
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.transparencyView.alpha = 1
+        })
+    }
+    
+    func transparencyButton() {
+        transparencyView.userInteractionEnabled = false
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.transparencyView.alpha = 0
+        }) { (done) -> Void in
+            self.transparencyView.removeFromSuperview()
+        }
+    }
+    
+    func pocketButton() {
+        authenticatePocket()
+        transparencyButton()
+    }
+    
+    func deliciousButton() {
+        authenticateDelicious()
+        transparencyButton()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

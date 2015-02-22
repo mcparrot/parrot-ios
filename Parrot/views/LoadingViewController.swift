@@ -18,14 +18,25 @@ class LoadingViewController: UIViewController, NSXMLParserDelegate {
         
         self.navigationController?.navigationBar.hidden = true
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "pocketAuthenticated", name: pocketAuthenticatedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "deliciousAuthenticated", name: deliciousAuthenticatedNotification, object: nil)
+        renewPocket()
+        renewDelicious()
         
-        authenticatePocket()
-        authenticateDelicious()
+        if pocketAuthenticated {
+            retrievePocket()
+        } else {
+            pocketDone = true
+        }
+        
+        if deliciousAuthenticated {
+            retrieveDelicious()
+        } else {
+            deliciousDone = true
+        }
+        
+        retrieveText()
     }
     
-    func pocketAuthenticated() {
+    func retrievePocket() {
         let url = NSURL(string: "https://getpocket.com/v3/get")!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
@@ -57,7 +68,7 @@ class LoadingViewController: UIViewController, NSXMLParserDelegate {
         }
     }
     
-    func deliciousAuthenticated() {
+    func retrieveDelicious() {
         let url = NSURL(string: "https://api.del.icio.us/v1/posts/all")!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "GET"
