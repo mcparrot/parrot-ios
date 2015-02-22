@@ -141,6 +141,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="loginButton" destination="IBA-PK-Zd8" id="XUw-Gy-hOh"/>
                         <outlet property="tableView" destination="Pet-zr-17R" id="Hvf-ez-uEt"/>
                         <outlet property="textField" destination="KhL-YH-TjJ" id="USc-Ps-318"/>
                         <segue destination="vXZ-lx-hvc" kind="show" identifier="displaySegue" id="292-r6-8RK"/>
