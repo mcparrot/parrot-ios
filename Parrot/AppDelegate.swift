@@ -18,10 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let lvc = storyboard.instantiateViewControllerWithIdentifier("LoadingViewController") as LoadingViewController
-        self.window!.rootViewController!.presentViewController(lvc, animated: false, completion: nil)
-        
         switch url.host! {
         case "pocket":
             authenticatePocketWithURL(url)

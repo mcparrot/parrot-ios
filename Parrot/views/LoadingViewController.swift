@@ -16,15 +16,10 @@ class LoadingViewController: UIViewController, NSXMLParserDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        objects = [PTObject]()
-        
-        renewServices()
-        initializeEverything()
-    }
-    
-    func initializeEverything() {
         SVProgressHUD.setOffsetFromCenter(UIOffsetMake(0, 250))
         SVProgressHUD.showProgress(0)
+        
+        renewServices()
         
         self.navigationController?.navigationBar.hidden = true
         
@@ -141,6 +136,10 @@ class LoadingViewController: UIViewController, NSXMLParserDelegate {
                     self.performSegueWithIdentifier("librarySegue", sender: self)
                 }
             })
+        }
+        
+        if objects.count == 0 {
+            self.performSegueWithIdentifier("librarySegue", sender: self)
         }
     }
     
