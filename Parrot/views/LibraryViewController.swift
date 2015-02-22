@@ -3,7 +3,7 @@
 //  Parrot
 //
 //  Created by Jack Cook on 2/22/15.
-//  Copyright (c) 2015 Jack Cook. All rights reserved.
+//  Copyright (c) 2015 Jack Cook. All rights reserved. Wow such copyright
 //
 
 import UIKit
