@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Jack Cook. All rights reserved.
 //
 
+import Alamofire
+
 @objc protocol PTLoadingHelperDelegate {
     optional func madeProgress(progress: Float)
     optional func completedWithNoObjects()
@@ -99,7 +101,7 @@ class PTLoadingHelper: NSObject, NSXMLParserDelegate {
         
         var newObjects = [PTObject]()
         for object in objects {
-            request(.GET, "http://api.diffbot.com/v3/article", parameters: ["token": diffbotToken, "url": object.url.absoluteString!]).response({ (request, response, data, error) -> Void in
+            Alamofire.request(.GET, "http://api.diffbot.com/v3/article", parameters: ["token": diffbotToken, "url": object.url.absoluteString!]).response({ (request, response, data, error) -> Void in
                 if let result = NSJSONSerialization.JSONObjectWithData(data as NSData, options: .MutableContainers, error: nil) as? NSDictionary {
                     if let objs = result["objects"] as? NSArray {
                         for obj in objs {

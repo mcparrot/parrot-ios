@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Jack Cook. All rights reserved.
 //
 
+import FlatUIKit
 import UIKit
 
 class DisplayViewController: UIViewController {

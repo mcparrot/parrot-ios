@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Jack Cook. All rights reserved. Wow such copyright
 //
 
+import SVProgressHUD
 import UIKit
 
 class LibraryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PTLoadingHelperDelegate {
