@@ -16,6 +16,9 @@ class LoadingViewController: UIViewController, NSXMLParserDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        SVProgressHUD.setOffsetFromCenter(UIOffsetMake(0, 250))
+        SVProgressHUD.showProgress(0)
+        
         self.navigationController?.navigationBar.hidden = true
         
         renewPocket()
@@ -125,13 +128,19 @@ class LoadingViewController: UIViewController, NSXMLParserDelegate {
                     }
                     
                     completed += 1
+                    SVProgressHUD.showProgress(1 / Float(objects.count) * Float(completed))
                 }
                 
                 if completed == objects.count {
+                    SVProgressHUD.showProgress(1)
                     objects = newObjects
                     self.performSegueWithIdentifier("librarySegue", sender: self)
                 }
             })
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        SVProgressHUD.dismiss()
     }
 }
