@@ -13,7 +13,9 @@ class ViewController: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var wordLabel: UILabel!
     
+    @IBOutlet var wpmLabel: UILabel!
     @IBOutlet var speedSlider: PTSlider!
+    @IBOutlet var progressLabel: UILabel!
     @IBOutlet var progressSlider: PTSlider!
     
     @IBOutlet var drawerView: UIView!
@@ -23,8 +25,8 @@ class ViewController: UIViewController {
     
     var words = [String]()
     var current = 0
-    var paused = true
     var drawer = true
+    var paused = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +52,32 @@ class ViewController: UIViewController {
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.drawerView.layoutIfNeeded()
-        })
+        }) { (done) -> Void in
+            if !self.drawer {
+                self.paused = false
+            }
+        }
+        
+        if !self.drawer {
+            self.paused = true
+        }
         
         drawer = !drawer
+    }
+    
+    @IBAction func speedSlider(sender: AnyObject) {
+        let value = Int(speedSlider.value)
+        wpmLabel.text = "\(value) words per second"
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        paused = true
+    }
+    
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        if paused {
+            paused = false
+        }
     }
     
     func pocketAuthenticated() {
@@ -125,14 +150,21 @@ class ViewController: UIViewController {
             words.append(word)
         }
         
-        let timer = NSTimer.scheduledTimerWithTimeInterval(1 / 6, target: self, selector: "updateWord", userInfo: nil, repeats: true)
+        let speed = Double(1 / Int(speedSlider.value))
+        let timer = NSTimer.scheduledTimerWithTimeInterval(speed, target: self, selector: "updateWord", userInfo: nil, repeats: false)
     }
     
     func updateWord() {
         if !paused {
             wordLabel.text = words[current]
             current += 1
+            self.progressLabel.text = "\(current) / \(words.count) words"
+            self.progressSlider.maximumValue = Float(words.count)
+            self.progressSlider.value = Float(current)
         }
+        
+        let speed = Double(1 / speedSlider.value)
+        let timer = NSTimer.scheduledTimerWithTimeInterval(speed, target: self, selector: "updateWord", userInfo: nil, repeats: false)
     }
     
     override func prefersStatusBarHidden() -> Bool {
