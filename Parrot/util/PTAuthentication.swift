@@ -8,7 +8,7 @@
 
 import UIKit
 
-let pocketConsumerKey = "38321-0d999ea0805d69d4f050b96b"
+let pocketConsumerKey = "38330-5b53c97729230f2da7c5b3f5"
 let pocketRedirectUri = "parrot-login://pocket"
 var pocketRequestCode = ""
 var pocketAccessToken = ""
@@ -19,6 +19,7 @@ let pocketAuthenticatedNotification = "PTPocketAuthenticated"
 func authenticatePocket() {
     let accessToken = SSKeychain.passwordForService("parrot", account: "pocket")
     if let at = accessToken {
+        println(accessToken)
         pocketAccessToken = accessToken
         NSNotificationCenter.defaultCenter().postNotificationName(pocketAuthenticatedNotification, object: nil)
         // ???

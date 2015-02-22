@@ -134,6 +134,10 @@
                                         <state key="normal" image="bookmark.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="highlighted" image="bookmark-pressed.png"/>
+                                        <connections>
+                                            <action selector="bookmarkButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1Wz-kd-ire"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmN-9R-GdS">
                                         <rect key="frame" x="65" y="281" width="39" height="37"/>
@@ -145,11 +149,15 @@
                                         <state key="normal" image="favorite.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="highlighted" image="favorite-pressed.png"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="pvd-yB-L96"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="favoriteButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5o6-5B-w7X"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYw-CG-rk0">
                                         <rect key="frame" x="499" y="281" width="33" height="37"/>
@@ -160,9 +168,13 @@
                                         <state key="normal" image="share.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <state key="highlighted" image="share-pressed.png"/>
+                                        <connections>
+                                            <action selector="shareButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zOA-xz-xN6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.22612543706293703" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99907124125874125" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="VyU-FW-39C" firstAttribute="top" secondItem="02r-ZD-sm1" secondAttribute="bottom" constant="44" id="04a-55-aPH"/>
                                     <constraint firstItem="XgT-la-K95" firstAttribute="top" secondItem="cwD-5S-kFm" secondAttribute="top" constant="77" id="2yV-Iv-IzS"/>
@@ -252,6 +264,7 @@
                         <outlet property="bottomDrawerConstraint" destination="bBD-H7-AR0" id="DvJ-0Q-bcB"/>
                         <outlet property="drawerButton" destination="QiA-YL-HSu" id="yf9-XD-oay"/>
                         <outlet property="drawerView" destination="cwD-5S-kFm" id="uut-MU-R0N"/>
+                        <outlet property="favoriteButton" destination="vmN-9R-GdS" id="bsb-Xp-p7c"/>
                         <outlet property="progressLabel" destination="ThX-ac-UmH" id="PnW-Qh-5fU"/>
                         <outlet property="progressSlider" destination="pBV-P5-Mch" id="sFc-SS-XbZ"/>
                         <outlet property="speedSlider" destination="02r-ZD-sm1" id="7cD-tl-80k"/>
@@ -267,9 +280,12 @@
     <resources>
         <image name="back-arrow.png" width="78" height="52"/>
         <image name="book.png" width="66" height="44"/>
+        <image name="bookmark-pressed.png" width="63" height="120"/>
         <image name="bookmark.png" width="63" height="120"/>
+        <image name="favorite-pressed.png" width="118" height="112"/>
         <image name="favorite.png" width="118" height="112"/>
         <image name="pull-up.png" width="90" height="36"/>
+        <image name="share-pressed.png" width="106" height="118"/>
         <image name="share.png" width="106" height="118"/>
         <image name="speed.png" width="62" height="34"/>
     </resources>

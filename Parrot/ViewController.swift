@@ -23,10 +23,13 @@ class ViewController: UIViewController {
     @IBOutlet var drawerButton: UIButton!
     @IBOutlet var bottomDrawerConstraint: NSLayoutConstraint!
     
+    @IBOutlet var favoriteButton: UIButton!
+    
     var words = [String]()
     var current = 0
-    var drawer = true
-    var paused = true
+    var drawer = false
+    var paused = false
+    var favorite = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +40,17 @@ class ViewController: UIViewController {
         
         speedSlider.configureFlatSliderWithTrackColor(UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1), progressColor: UIColor(red: 1, green: 0.81, blue: 0.77, alpha: 1), thumbColor: UIColor(red: 0.96, green: 0.31, blue: 0.18, alpha: 1))
         progressSlider.configureFlatSliderWithTrackColor(UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1), progressColor: UIColor(red: 1, green: 0.81, blue: 0.77, alpha: 1), thumbColor: UIColor(red: 0.96, green: 0.31, blue: 0.18, alpha: 1))
+        
+        drawerView.clipsToBounds = false
+        
+        let shadowPath = UIBezierPath(rect: drawerView.bounds)
+        drawerView.layer.masksToBounds = false
+        drawerView.layer.shadowColor = UIColor.blackColor().CGColor
+        drawerView.layer.shadowOffset = CGSizeMake(0, -6)
+        drawerView.layer.shadowOpacity = 0
+        drawerView.layer.shadowPath = shadowPath.CGPath
+        
+        bottomDrawerConstraint.constant = -321
     }
     
     @IBAction func drawerButton(sender: AnyObject) {
@@ -50,6 +64,13 @@ class ViewController: UIViewController {
                 self.paused = false
             }
         }
+        
+        let animation = CABasicAnimation(keyPath: "shadowOpacity")
+        animation.fromValue = drawer ? 0.25 : 0
+        animation.toValue = drawer ? 0 : 0.25
+        animation.duration = 0.5
+        drawerView.layer.addAnimation(animation, forKey: "shadowOpacity")
+        drawerView.layer.shadowOpacity = drawer ? 0 : 0.25
         
         if !self.drawer {
             self.paused = true
@@ -66,6 +87,17 @@ class ViewController: UIViewController {
     @IBAction func progressSlider(sender: AnyObject) {
         current = Int(progressSlider.value)
         self.progressLabel.text = "\(current) / \(words.count) words"
+    }
+    
+    @IBAction func favoriteButton(sender: AnyObject) {
+        favorite = !favorite
+        favoriteButton.setImage(favorite ? UIImage(named: "favorite-pressed.png") : UIImage(named: "favorite.png"), forState: .Normal)
+    }
+    
+    @IBAction func bookmarkButton(sender: AnyObject) {
+    }
+    
+    @IBAction func shareButton(sender: AnyObject) {
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -99,11 +131,14 @@ class ViewController: UIViewController {
                                             if let word_count = dict["word_count"] as? String {
                                                 let object = PTObject()
                                                 object.item_id = item_id.toInt()!
+                                                println(object.item_id)
                                                 object.title = title
                                                 object.url = NSURL(string: url)!
                                                 object.status = status.toInt()!
                                                 object.word_count = status.toInt()!
                                                 objects.append(object)
+                                                
+                                                self.titleLabel.text = object.title
                                             }
                                         }
                                     }
@@ -147,6 +182,15 @@ class ViewController: UIViewController {
         for word in text.componentsSeparatedByString(" ") {
             words.append(word)
         }
+        
+        wordLabel.text = words[current]
+        current += 1
+        self.progressLabel.text = "\(current) / \(words.count) words"
+        self.progressSlider.maximumValue = Float(words.count)
+        self.progressSlider.value = Float(current)
+        
+        let value = Int(speedSlider.value)
+        wpmLabel.text = "\(value) words per minute"
         
         let speed = Double(1 / Int(speedSlider.value))
         let timer = NSTimer.scheduledTimerWithTimeInterval(speed, target: self, selector: "updateWord", userInfo: nil, repeats: false)
