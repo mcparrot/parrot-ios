@@ -37,17 +37,10 @@ class ViewController: UIViewController {
         
         speedSlider.configureFlatSliderWithTrackColor(UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1), progressColor: UIColor(red: 1, green: 0.81, blue: 0.77, alpha: 1), thumbColor: UIColor(red: 0.96, green: 0.31, blue: 0.18, alpha: 1))
         progressSlider.configureFlatSliderWithTrackColor(UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1), progressColor: UIColor(red: 1, green: 0.81, blue: 0.77, alpha: 1), thumbColor: UIColor(red: 0.96, green: 0.31, blue: 0.18, alpha: 1))
-        
-        progressSlider.setThumbImage(UIImage(), forState: .Normal)
-        progressSlider.userInteractionEnabled = false
-    }
-    
-    override func viewDidLayoutSubviews() {
-        println(drawerButton.frame.origin.y)
     }
     
     @IBAction func drawerButton(sender: AnyObject) {
-        bottomDrawerConstraint.constant = drawer ? -298 : 0
+        bottomDrawerConstraint.constant = drawer ? -321 : 0
         drawerView.setNeedsUpdateConstraints()
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
@@ -67,7 +60,12 @@ class ViewController: UIViewController {
     
     @IBAction func speedSlider(sender: AnyObject) {
         let value = Int(speedSlider.value)
-        wpmLabel.text = "\(value) words per second"
+        wpmLabel.text = "\(value) words per minute"
+    }
+    
+    @IBAction func progressSlider(sender: AnyObject) {
+        current = Int(progressSlider.value)
+        self.progressLabel.text = "\(current) / \(words.count) words"
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -75,7 +73,7 @@ class ViewController: UIViewController {
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        if paused {
+        if paused && !drawer {
             paused = false
         }
     }
@@ -163,7 +161,7 @@ class ViewController: UIViewController {
             self.progressSlider.value = Float(current)
         }
         
-        let speed = Double(1 / speedSlider.value)
+        let speed = Double(1 / (speedSlider.value / 60))
         let timer = NSTimer.scheduledTimerWithTimeInterval(speed, target: self, selector: "updateWord", userInfo: nil, repeats: false)
     }
     
