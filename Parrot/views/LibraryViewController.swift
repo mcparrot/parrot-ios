@@ -47,7 +47,7 @@ class LibraryViewController: UIViewController, UITableViewDataSource, UITableVie
         let taglineLabel = cell.contentView.viewWithTag(11) as UILabel
         
         titleLabel.text = tableObjects[indexPath.row].title
-        taglineLabel.text = tableObjects[indexPath.row].title
+        taglineLabel.text = tableObjects[indexPath.row].text
         
         return cell
     }

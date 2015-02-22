@@ -99,12 +99,8 @@ class PTLoadingHelper: NSObject, NSXMLParserDelegate {
         
         var newObjects = [PTObject]()
         for object in objects {
-            let url = NSURL(string: "http://api.diffbot.com/v3/article?token=\(diffbotToken)&url=\(object.url)")!
-            let request = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "GET"
-            
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response, data, error) -> Void in
-                if let result = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
+            request(.GET, "http://api.diffbot.com/v3/article", parameters: ["token": diffbotToken, "url": object.url.absoluteString!]).response({ (request, response, data, error) -> Void in
+                if let result = NSJSONSerialization.JSONObjectWithData(data as NSData, options: .MutableContainers, error: nil) as? NSDictionary {
                     if let objs = result["objects"] as? NSArray {
                         for obj in objs {
                             if let objct = obj as? NSDictionary {

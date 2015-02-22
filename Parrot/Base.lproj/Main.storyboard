@@ -164,11 +164,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WV1-Gp-Z54">
-                                <rect key="frame" x="16" y="22" width="30" height="20"/>
+                                <rect key="frame" x="0.0" y="0.0" width="62" height="64"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="RbH-GO-1Re"/>
-                                    <constraint firstAttribute="height" constant="20" id="lZk-td-PVp"/>
+                                    <constraint firstAttribute="width" constant="62" id="RbH-GO-1Re"/>
+                                    <constraint firstAttribute="height" constant="64" id="lZk-td-PVp"/>
                                 </constraints>
+                                <inset key="contentEdgeInsets" minX="16" minY="22" maxX="16" maxY="22"/>
                                 <state key="normal" image="back-arrow.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -177,7 +178,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ile-C9-8ah">
-                                <rect key="frame" x="62" y="23" width="476" height="24"/>
+                                <rect key="frame" x="78" y="23" width="460" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="itH-GE-cFu"/>
                                 </constraints>
@@ -398,8 +399,8 @@
                             <constraint firstItem="cwD-5S-kFm" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Wgp-v5-9zX"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="cwD-5S-kFm" secondAttribute="bottom" id="bBD-H7-AR0"/>
                             <constraint firstItem="Ile-C9-8ah" firstAttribute="leading" secondItem="WV1-Gp-Z54" secondAttribute="trailing" constant="16" id="bxe-G6-fVt"/>
-                            <constraint firstItem="WV1-Gp-Z54" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="22" id="dsL-eH-jje"/>
-                            <constraint firstItem="WV1-Gp-Z54" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="v1f-0S-HJM"/>
+                            <constraint firstItem="WV1-Gp-Z54" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="dsL-eH-jje"/>
+                            <constraint firstItem="WV1-Gp-Z54" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="v1f-0S-HJM"/>
                             <constraint firstAttribute="trailing" secondItem="INb-of-wvz" secondAttribute="trailing" id="vMV-rr-17i"/>
                             <constraint firstAttribute="trailing" secondItem="Ile-C9-8ah" secondAttribute="trailing" constant="62" id="wOt-l8-fKP"/>
                         </constraints>
@@ -460,7 +461,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loading.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yfc-x1-ECB">
-                                <rect key="frame" x="80" y="44" width="440" height="512"/>
+                                <rect key="frame" x="128" y="100" width="344" height="400"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Yfc-x1-ECB" secondAttribute="height" multiplier="1:1" id="2Rx-Ga-rN8"/>
                                     <constraint firstAttribute="width" secondItem="Yfc-x1-ECB" secondAttribute="height" multiplier="80:93" id="OjL-cd-d7w"/>
@@ -477,13 +478,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Yfc-x1-ECB" firstAttribute="width" secondItem="Yfc-x1-ECB" secondAttribute="height" multiplier="679:788" id="AWp-ce-Vyr"/>
+                            <constraint firstItem="Yfc-x1-ECB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="mxI-TG-x14" secondAttribute="bottom" constant="80" id="FCJ-lH-oh0"/>
+                            <constraint firstItem="AxH-3S-568" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Yfc-x1-ECB" secondAttribute="bottom" constant="80" id="IPQ-f5-eyf"/>
+                            <constraint firstAttribute="centerX" secondItem="Yfc-x1-ECB" secondAttribute="centerX" id="LYt-SR-egz"/>
                             <constraint firstAttribute="centerY" secondItem="Yfc-x1-ECB" secondAttribute="centerY" id="R2r-1q-X2L"/>
-                            <constraint firstItem="Yfc-x1-ECB" firstAttribute="leading" secondItem="Icf-ah-3X8" secondAttribute="leading" constant="80" id="i77-eG-wH5"/>
-                            <constraint firstAttribute="trailing" secondItem="Yfc-x1-ECB" secondAttribute="trailing" constant="80" id="tam-WB-l40"/>
+                            <constraint firstItem="Yfc-x1-ECB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Icf-ah-3X8" secondAttribute="leading" constant="80" id="TVG-Qx-Nwd"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Yfc-x1-ECB" secondAttribute="trailing" constant="80" id="WOV-fP-8WW"/>
+                            <constraint firstItem="Yfc-x1-ECB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Icf-ah-3X8" secondAttribute="leading" constant="80" id="i77-eG-wH5"/>
+                            <constraint firstAttribute="centerY" secondItem="Yfc-x1-ECB" secondAttribute="centerY" id="svF-zv-nzm"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Yfc-x1-ECB" secondAttribute="trailing" constant="80" id="tam-WB-l40"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="AWp-ce-Vyr"/>
+                                <exclude reference="R2r-1q-X2L"/>
+                                <exclude reference="i77-eG-wH5"/>
+                                <exclude reference="tam-WB-l40"/>
                             </mask>
                         </variation>
                     </view>

@@ -66,12 +66,9 @@ func authenticateDelicious() {
 
 func authenticateDeliciousWithURL(url: NSURL) {
     let code = url.query!.componentsSeparatedByString("=")[1]
-    let url = NSURL(string: "https://avosapi.delicious.com/api/v1/oauth/token?client_id=\(deliciousClientID)&client_secret=\(deliciousClientSecret)&grant_type=code&redirect_uri=\(deliciousRedirectURI)&code=\(code)")!
-    let request = NSMutableURLRequest(URL: url)
-    request.HTTPMethod = "POST"
     
-    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
-        if let result = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
+    request(.POST, "https://avosapi.delicious.com/api/v1/oauth/token", parameters: ["client_id": deliciousClientID, "client_secret": deliciousClientSecret, "grant_type": "code", "redirect_uri": deliciousRedirectURI, "code": code]).response { (request, response, data, error) -> Void in
+        if let result = NSJSONSerialization.JSONObjectWithData(data as NSData, options: .MutableContainers, error: nil) as? NSDictionary {
             if let access_token = result["access_token"] as? String {
                 SSKeychain.setPassword(access_token, forService: "parrot", account: "delicious")
                 deliciousAuthenticated = true

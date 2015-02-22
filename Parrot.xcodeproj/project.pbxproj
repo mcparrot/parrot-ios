@@ -37,6 +37,7 @@
 		EBA1F8571A98FD04000C2F8C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBA1F8551A98FD04000C2F8C /* LaunchScreen.xib */; };
 		EBA1F8631A98FD04000C2F8C /* ParrotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA1F8621A98FD04000C2F8C /* ParrotTests.swift */; };
 		EBEE16631A9A2978006EA9DA /* PTLoadingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEE16621A9A2978006EA9DA /* PTLoadingHelper.swift */; };
+		EBEE16651A9A345E006EA9DA /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEE16641A9A345E006EA9DA /* Alamofire.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		EBA1F8611A98FD04000C2F8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBA1F8621A98FD04000C2F8C /* ParrotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParrotTests.swift; sourceTree = "<group>"; };
 		EBEE16621A9A2978006EA9DA /* PTLoadingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTLoadingHelper.swift; sourceTree = "<group>"; };
+		EBEE16641A9A345E006EA9DA /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				EB0FDF891A99215F003B66E0 /* PTObject.swift */,
 				EB540EAF1A994C27002B9034 /* PTUtilities.swift */,
 				EBEE16621A9A2978006EA9DA /* PTLoadingHelper.swift */,
+				EBEE16641A9A345E006EA9DA /* Alamofire.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				EBEE16631A9A2978006EA9DA /* PTLoadingHelper.swift in Sources */,
 				EB540EBC1A999BE9002B9034 /* DisplayViewController.swift in Sources */,
 				EB0FDF8A1A99215F003B66E0 /* PTObject.swift in Sources */,
+				EBEE16651A9A345E006EA9DA /* Alamofire.swift in Sources */,
 				EB0FDF881A990FCC003B66E0 /* PTAuthentication.swift in Sources */,
 				EB0FDF8C1A99232D003B66E0 /* Common.swift in Sources */,
 				EBA1F84D1A98FD04000C2F8C /* AppDelegate.swift in Sources */,
