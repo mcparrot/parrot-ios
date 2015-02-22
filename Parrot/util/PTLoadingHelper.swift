@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import SwiftyJSON
 
 @objc protocol PTLoadingHelperDelegate {
     optional func madeProgress(progress: Float)
@@ -40,17 +41,16 @@ class PTLoadingHelper: NSObject, NSXMLParserDelegate {
         request.HTTPBody = NSJSONSerialization.dataWithJSONObject(body, options: nil, error: nil)
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
-            if let result = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
-                if let list = result["list"] as? NSDictionary {
-                    for (item_id, dict) in list {
-                        if let data = dict as? NSDictionary {
-                            if let title = data["resolved_title"] as? String {
-                                if let url = data["resolved_url"] as? String {
-                                    let object = PTObject()
-                                    object.title = title
-                                    object.url = NSURL(string: url)!
-                                    objects.append(object)
-                                }
+            let json = JSON(data: data)
+            if let list = json["list"].dictionary {
+                for (item_id, dict) in list {
+                    if let data = dict.dictionary {
+                        if let title = data["resolved_title"]?.string {
+                            if let url = data["resolved_url"]?.string {
+                                let object = PTObject()
+                                object.title = title
+                                object.url = NSURL(string: url)!
+                                objects.append(object)
                             }
                         }
                     }
@@ -102,21 +102,20 @@ class PTLoadingHelper: NSObject, NSXMLParserDelegate {
         var newObjects = [PTObject]()
         for object in objects {
             Alamofire.request(.GET, "http://api.diffbot.com/v3/article", parameters: ["token": diffbotToken, "url": object.url.absoluteString!]).response({ (request, response, data, error) -> Void in
-                if let result = NSJSONSerialization.JSONObjectWithData(data as NSData, options: .MutableContainers, error: nil) as? NSDictionary {
-                    if let objs = result["objects"] as? NSArray {
-                        for obj in objs {
-                            if let objct = obj as? NSDictionary {
-                                if let text = objct["text"] as? String {
-                                    object.text = text
-                                    newObjects.append(object)
-                                }
+                let json = JSON(data: data as NSData)
+                if let objs = json["objects"].array {
+                    for obj in objs {
+                        if let objct = obj.dictionary {
+                            if let text = objct["text"]?.string {
+                                object.text = text
+                                newObjects.append(object)
                             }
                         }
                     }
-                    
-                    completed += 1
-                    self.delegate.madeProgress!(1 / Float(objects.count) * Float(completed))
                 }
+                
+                completed += 1
+                self.delegate.madeProgress!(1 / Float(objects.count) * Float(completed))
                 
                 if completed == objects.count {
                     self.delegate.completedWithObjects!(newObjects)

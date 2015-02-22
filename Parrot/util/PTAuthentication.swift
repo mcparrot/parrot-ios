@@ -8,6 +8,7 @@
 
 import Alamofire
 import SSKeychain
+import SwiftyJSON
 import UIKit
 
 let pocketConsumerKey = "38330-5b53c97729230f2da7c5b3f5"
@@ -70,12 +71,11 @@ func authenticateDeliciousWithURL(url: NSURL) {
     let code = url.query!.componentsSeparatedByString("=")[1]
     
     Alamofire.request(.POST, "https://avosapi.delicious.com/api/v1/oauth/token", parameters: ["client_id": deliciousClientID, "client_secret": deliciousClientSecret, "grant_type": "code", "redirect_uri": deliciousRedirectURI, "code": code]).response { (request, response, data, error) -> Void in
-        if let result = NSJSONSerialization.JSONObjectWithData(data as NSData, options: .MutableContainers, error: nil) as? NSDictionary {
-            if let access_token = result["access_token"] as? String {
-                SSKeychain.setPassword(access_token, forService: "parrot", account: "delicious")
-                deliciousAuthenticated = true
-                NSNotificationCenter.defaultCenter().postNotificationName(deliciousAuthenticatedNotification, object: nil)
-            }
+        let json = JSON(data: data as NSData)
+        if let access_token = json["access_token"].string {
+            SSKeychain.setPassword(access_token, forService: "parrot", account: "delicious")
+            deliciousAuthenticated = true
+            NSNotificationCenter.defaultCenter().postNotificationName(deliciousAuthenticatedNotification, object: nil)
         }
     }
 }
