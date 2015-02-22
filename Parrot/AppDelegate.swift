@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch url.host! {
         case "pocket":
             authenticatePocketWithURL(url)
+        case "delicious":
+            authenticateDeliciousWithURL(url)
         default:
             println("Error authenticating service: \(url.host!)")
             println(url.absoluteString)

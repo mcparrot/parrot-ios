@@ -8,7 +8,10 @@
 
 import UIKit
 
-class LoadingViewController: UIViewController {
+class LoadingViewController: UIViewController, NSXMLParserDelegate {
+    
+    var pocketDone = false
+    var deliciousDone = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,8 +19,10 @@ class LoadingViewController: UIViewController {
         self.navigationController?.navigationBar.hidden = true
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pocketAuthenticated", name: pocketAuthenticatedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "deliciousAuthenticated", name: deliciousAuthenticatedNotification, object: nil)
         
         authenticatePocket()
+        authenticateDelicious()
     }
     
     func pocketAuthenticated() {
@@ -34,21 +39,12 @@ class LoadingViewController: UIViewController {
                 if let list = result["list"] as? NSDictionary {
                     for (item_id, dict) in list {
                         if let data = dict as? NSDictionary {
-                            if let item_id = data["item_id"] as? String {
-                                if let title = data["resolved_title"] as? String {
-                                    if let url = data["resolved_url"] as? String {
-                                        if let status = dict["status"] as? String {
-                                            if let word_count = dict["word_count"] as? String {
-                                                let object = PTObject()
-                                                object.item_id = item_id.toInt()!
-                                                object.title = title
-                                                object.url = NSURL(string: url)!
-                                                object.status = status.toInt()!
-                                                object.word_count = status.toInt()!
-                                                objects.append(object)
-                                            }
-                                        }
-                                    }
+                            if let title = data["resolved_title"] as? String {
+                                if let url = data["resolved_url"] as? String {
+                                    let object = PTObject()
+                                    object.title = title
+                                    object.url = NSURL(string: url)!
+                                    objects.append(object)
                                 }
                             }
                         }
@@ -56,11 +52,46 @@ class LoadingViewController: UIViewController {
                 }
             }
             
+            self.pocketDone = true
             self.retrieveText()
         }
     }
     
+    func deliciousAuthenticated() {
+        let url = NSURL(string: "https://api.del.icio.us/v1/posts/all")!
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        request.addValue("Bearer \(deliciousAccessToken)", forHTTPHeaderField: "Authorization")
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
+            let parser = NSXMLParser(data: data)
+            parser.delegate = self
+            parser.parse()
+        }
+    }
+    
+    func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: [NSObject : AnyObject]!) {
+        if elementName == "post" {
+            let title = attributeDict["description"] as String
+            let url = attributeDict["href"] as String
+            
+            let object = PTObject()
+            object.title = title
+            object.url = NSURL(string: url)!
+            objects.append(object)
+        }
+    }
+    
+    func parserDidEndDocument(parser: NSXMLParser!) {
+        deliciousDone = true
+        retrieveText()
+    }
+    
     func retrieveText() {
+        if !(pocketDone && deliciousDone) {
+            return
+        }
+        
         var completed = 0
         
         var newObjects = [PTObject]()
