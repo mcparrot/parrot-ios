@@ -64,6 +64,7 @@ class LoadingViewController: UIViewController {
     func retrieveText() {
         var completed = 0
         
+        var newObjects = [PTObject]()
         for object in objects {
             let url = NSURL(string: "http://api.diffbot.com/v3/article?token=\(diffbotToken)&url=\(object.url)")!
             let request = NSMutableURLRequest(URL: url)
@@ -71,19 +72,24 @@ class LoadingViewController: UIViewController {
             
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response, data, error) -> Void in
                 if let result = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
+                    let stuff = NSString(data: data, encoding: NSUTF8StringEncoding)!
+//                    println(stuff)
                     if let objs = result["objects"] as? NSArray {
                         for obj in objs {
                             if let objct = obj as? NSDictionary {
                                 if let text = objct["text"] as? String {
                                     object.text = text
+                                    newObjects.append(object)
                                 }
                             }
                         }
                     }
+                    
+                    completed += 1
                 }
                 
-                completed += 1
                 if completed == objects.count {
+                    objects = newObjects
                     self.performSegueWithIdentifier("librarySegue", sender: self)
                 }
             })

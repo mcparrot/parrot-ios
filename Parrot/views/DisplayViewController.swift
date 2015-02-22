@@ -25,6 +25,7 @@ class DisplayViewController: UIViewController {
     
     @IBOutlet var favoriteButton: UIButton!
     
+    var object: PTObject!
     var words = [String]()
     var current = 0
     var drawer = false
@@ -36,6 +37,8 @@ class DisplayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initializeObject(object)
         
         speedSlider.configureFlatSliderWithTrackColor(UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1), progressColor: UIColor(red: 1, green: 0.81, blue: 0.77, alpha: 1), thumbColor: UIColor(red: 0.96, green: 0.31, blue: 0.18, alpha: 1))
         progressSlider.configureFlatSliderWithTrackColor(UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1), progressColor: UIColor(red: 1, green: 0.81, blue: 0.77, alpha: 1), thumbColor: UIColor(red: 0.96, green: 0.31, blue: 0.18, alpha: 1))
@@ -52,6 +55,10 @@ class DisplayViewController: UIViewController {
         bottomDrawerConstraint.constant = -321
         
         startCountdown()
+    }
+    
+    @IBAction func backButton(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func drawerButton(sender: AnyObject) {
@@ -133,8 +140,8 @@ class DisplayViewController: UIViewController {
         }
     }
     
-    func retrievalDone() {
-        let text = objects[0].text
+    func initializeObject(object: PTObject) {
+        let text = object.text
         for word in text.componentsSeparatedByString(" ") {
             words.append(word)
         }
