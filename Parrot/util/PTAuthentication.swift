@@ -32,15 +32,6 @@ func authenticatePocket() {
     }
 }
 
-func renewPocket() {
-    let accessToken = SSKeychain.passwordForService("parrot", account: "pocket")
-    if let at = accessToken {
-        pocketAccessToken = accessToken
-        pocketAuthenticated = true
-        NSNotificationCenter.defaultCenter().postNotificationName(pocketAuthenticatedNotification, object: nil)
-    }
-}
-
 func authenticatePocketWithURL(url: NSURL) {
     let url = NSURL(string: "https://getpocket.com/v3/oauth/authorize")!
     let request = NSMutableURLRequest(URL: url)
@@ -73,15 +64,6 @@ func authenticateDelicious() {
     UIApplication.sharedApplication().openURL(url)
 }
 
-func renewDelicious() {
-    let accessToken = SSKeychain.passwordForService("parrot", account: "delicious")
-    if let at = accessToken {
-        deliciousAccessToken = accessToken
-        deliciousAuthenticated = true
-        NSNotificationCenter.defaultCenter().postNotificationName(deliciousAuthenticatedNotification, object: nil)
-    }
-}
-
 func authenticateDeliciousWithURL(url: NSURL) {
     let code = url.query!.componentsSeparatedByString("=")[1]
     let url = NSURL(string: "https://avosapi.delicious.com/api/v1/oauth/token?client_id=\(deliciousClientID)&client_secret=\(deliciousClientSecret)&grant_type=code&redirect_uri=\(deliciousRedirectURI)&code=\(code)")!
@@ -97,6 +79,25 @@ func authenticateDeliciousWithURL(url: NSURL) {
             }
         }
     }
+}
+
+
+func renewServices() -> Bool {
+    let accessToken = SSKeychain.passwordForService("parrot", account: "pocket")
+    if let at = accessToken {
+        pocketAccessToken = accessToken
+        pocketAuthenticated = true
+        NSNotificationCenter.defaultCenter().postNotificationName(pocketAuthenticatedNotification, object: nil)
+    }
+    
+    let accessToken2 = SSKeychain.passwordForService("parrot", account: "delicious")
+    if let at = accessToken2 {
+        deliciousAccessToken = accessToken2
+        deliciousAuthenticated = true
+        NSNotificationCenter.defaultCenter().postNotificationName(deliciousAuthenticatedNotification, object: nil)
+    }
+    
+    return pocketAuthenticated || deliciousAuthenticated
 }
 
 

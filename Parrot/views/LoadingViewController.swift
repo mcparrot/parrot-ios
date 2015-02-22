@@ -16,13 +16,17 @@ class LoadingViewController: UIViewController, NSXMLParserDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        objects = [PTObject]()
+        
+        renewServices()
+        initializeEverything()
+    }
+    
+    func initializeEverything() {
         SVProgressHUD.setOffsetFromCenter(UIOffsetMake(0, 250))
         SVProgressHUD.showProgress(0)
         
         self.navigationController?.navigationBar.hidden = true
-        
-        renewPocket()
-        renewDelicious()
         
         if pocketAuthenticated {
             retrievePocket()

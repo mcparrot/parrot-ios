@@ -449,7 +449,7 @@
         <!--Loading View Controller-->
         <scene sceneID="Ggr-se-bKG">
             <objects>
-                <viewController id="WMj-2C-ZOX" customClass="LoadingViewController" customModule="Parrot" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadingViewController" id="WMj-2C-ZOX" customClass="LoadingViewController" customModule="Parrot" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mxI-TG-x14"/>
                         <viewControllerLayoutGuide type="bottom" id="AxH-3S-568"/>
