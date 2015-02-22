@@ -72,8 +72,6 @@ class LoadingViewController: UIViewController {
             
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response, data, error) -> Void in
                 if let result = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
-                    let stuff = NSString(data: data, encoding: NSUTF8StringEncoding)!
-//                    println(stuff)
                     if let objs = result["objects"] as? NSArray {
                         for obj in objs {
                             if let objct = obj as? NSDictionary {

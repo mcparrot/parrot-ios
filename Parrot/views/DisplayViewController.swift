@@ -146,6 +146,8 @@ class DisplayViewController: UIViewController {
             words.append(word)
         }
         
+        self.titleLabel.text = object.title
+        
         self.progressLabel.text = "\(current) / \(words.count) words"
         self.progressSlider.maximumValue = Float(words.count)
         self.progressSlider.value = Float(current)
