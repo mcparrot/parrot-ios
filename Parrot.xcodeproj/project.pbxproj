@@ -28,7 +28,6 @@
 		EB540EC21A999D5B002B9034 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB540EC11A999D5B002B9034 /* LibraryViewController.swift */; };
 		EB540EC51A99A0C4002B9034 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = EB540EC31A99A0C4002B9034 /* arrow.png */; };
 		EB540EC61A99A0C4002B9034 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = EB540EC41A99A0C4002B9034 /* search.png */; };
-		EB540ECA1A99B4C7002B9034 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB540EC91A99B4C7002B9034 /* Alamofire.swift */; };
 		EBA1F84D1A98FD04000C2F8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA1F84C1A98FD04000C2F8C /* AppDelegate.swift */; };
 		EBA1F8521A98FD04000C2F8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBA1F8501A98FD04000C2F8C /* Main.storyboard */; };
 		EBA1F8541A98FD04000C2F8C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA1F8531A98FD04000C2F8C /* Images.xcassets */; };
@@ -71,7 +70,6 @@
 		EB540EC11A999D5B002B9034 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		EB540EC31A99A0C4002B9034 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		EB540EC41A99A0C4002B9034 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
-		EB540EC91A99B4C7002B9034 /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		EBA1F8471A98FD04000C2F8C /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA1F84B1A98FD04000C2F8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBA1F84C1A98FD04000C2F8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 				EB0FDF871A990FCC003B66E0 /* PTAuthentication.swift */,
 				EB0FDF891A99215F003B66E0 /* PTObject.swift */,
 				EB540EAF1A994C27002B9034 /* PTUtilities.swift */,
-				EB540EC91A99B4C7002B9034 /* Alamofire.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -374,7 +371,6 @@
 				EB540EC01A999D21002B9034 /* LoadingViewController.swift in Sources */,
 				EB540EB01A994C27002B9034 /* PTUtilities.swift in Sources */,
 				EB540EC21A999D5B002B9034 /* LibraryViewController.swift in Sources */,
-				EB540ECA1A99B4C7002B9034 /* Alamofire.swift in Sources */,
 				EB540EBC1A999BE9002B9034 /* DisplayViewController.swift in Sources */,
 				EB0FDF8A1A99215F003B66E0 /* PTObject.swift in Sources */,
 				EB0FDF881A990FCC003B66E0 /* PTAuthentication.swift in Sources */,
