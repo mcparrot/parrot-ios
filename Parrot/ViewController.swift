@@ -30,6 +30,9 @@ class ViewController: UIViewController {
     var drawer = false
     var paused = false
     var favorite = false
+    var countdown = 3
+    
+    var countdownTimer: NSTimer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,9 +54,14 @@ class ViewController: UIViewController {
         drawerView.layer.shadowPath = shadowPath.CGPath
         
         bottomDrawerConstraint.constant = -321
+        
+        startCountdown()
     }
     
     @IBAction func drawerButton(sender: AnyObject) {
+        countdownTimer.invalidate()
+        countdown = 3
+        
         bottomDrawerConstraint.constant = drawer ? -321 : 0
         drawerView.setNeedsUpdateConstraints()
         
@@ -61,7 +69,7 @@ class ViewController: UIViewController {
             self.drawerView.layoutIfNeeded()
         }) { (done) -> Void in
             if !self.drawer {
-                self.paused = false
+                self.startCountdown()
             }
         }
         
@@ -106,6 +114,25 @@ class ViewController: UIViewController {
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         if paused && !drawer {
+            paused = false
+        }
+    }
+    
+    func startCountdown() {
+        paused = true
+        wordLabel.text = "\(countdown)"
+        wordLabel.font = UIFont(name: "AvenirNext-Regular", size: 128)
+        countdownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "decrementCountdown", userInfo: nil, repeats: false)
+    }
+    
+    func decrementCountdown() {
+        countdown -= 1
+        wordLabel.text = "\(countdown)"
+        wordLabel.font = UIFont(name: "AvenirNext-Regular", size: 128)
+        
+        if countdown > 0 {
+            countdownTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "decrementCountdown", userInfo: nil, repeats: false)
+        } else {
             paused = false
         }
     }
@@ -183,8 +210,6 @@ class ViewController: UIViewController {
             words.append(word)
         }
         
-        wordLabel.text = words[current]
-        current += 1
         self.progressLabel.text = "\(current) / \(words.count) words"
         self.progressSlider.maximumValue = Float(words.count)
         self.progressSlider.value = Float(current)
@@ -199,6 +224,7 @@ class ViewController: UIViewController {
     func updateWord() {
         if !paused {
             wordLabel.text = words[current]
+            wordLabel.font = UIFont(name: "AvenirNext-Regular", size: 56)
             current += 1
             self.progressLabel.text = "\(current) / \(words.count) words"
             self.progressSlider.maximumValue = Float(words.count)
