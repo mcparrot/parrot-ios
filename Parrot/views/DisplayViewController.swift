@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DisplayViewController.swift
 //  Parrot
 //
 //  Created by Jack Cook on 2/21/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DisplayViewController: UIViewController {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var wordLabel: UILabel!
@@ -36,10 +36,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "pocketAuthenticated", name: pocketAuthenticatedNotification, object: nil)
-        
-        authenticatePocket()
         
         speedSlider.configureFlatSliderWithTrackColor(UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1), progressColor: UIColor(red: 1, green: 0.81, blue: 0.77, alpha: 1), thumbColor: UIColor(red: 0.96, green: 0.31, blue: 0.18, alpha: 1))
         progressSlider.configureFlatSliderWithTrackColor(UIColor(red: 0.74, green: 0.76, blue: 0.78, alpha: 1), progressColor: UIColor(red: 1, green: 0.81, blue: 0.77, alpha: 1), thumbColor: UIColor(red: 0.96, green: 0.31, blue: 0.18, alpha: 1))
@@ -137,73 +133,6 @@ class ViewController: UIViewController {
         }
     }
     
-    func pocketAuthenticated() {
-        let url = NSURL(string: "https://getpocket.com/v3/get")!
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        request.addValue("application/json; charset=UTF8", forHTTPHeaderField: "Content-Type")
-        
-        let body = ["consumer_key": pocketConsumerKey, "access_token": pocketAccessToken]
-        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(body, options: nil, error: nil)
-        
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
-            if let result = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
-                if let list = result["list"] as? NSDictionary {
-                    for (item_id, dict) in list {
-                        if let data = dict as? NSDictionary {
-                            if let item_id = data["item_id"] as? String {
-                                if let title = data["resolved_title"] as? String {
-                                    if let url = data["resolved_url"] as? String {
-                                        if let status = dict["status"] as? String {
-                                            if let word_count = dict["word_count"] as? String {
-                                                let object = PTObject()
-                                                object.item_id = item_id.toInt()!
-                                                println(object.item_id)
-                                                object.title = title
-                                                object.url = NSURL(string: url)!
-                                                object.status = status.toInt()!
-                                                object.word_count = status.toInt()!
-                                                objects.append(object)
-                                                
-                                                self.titleLabel.text = object.title
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            self.retrieveText()
-        }
-    }
-    
-    func retrieveText() {
-        for object in objects {
-            let url = NSURL(string: "http://api.diffbot.com/v3/article?token=\(diffbotToken)&url=\(object.url)")!
-            let request = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "GET"
-            
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response, data, error) -> Void in
-                if let result = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: nil) as? NSDictionary {
-                    if let objs = result["objects"] as? NSArray {
-                        for obj in objs {
-                            if let objct = obj as? NSDictionary {
-                                if let text = objct["text"] as? String {
-                                    object.text = text
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                self.retrievalDone()
-            })
-        }
-    }
-    
     func retrievalDone() {
         let text = objects[0].text
         for word in text.componentsSeparatedByString(" ") {
@@ -223,16 +152,24 @@ class ViewController: UIViewController {
     
     func updateWord() {
         if !paused {
-            wordLabel.text = words[current]
-            wordLabel.font = UIFont(name: "AvenirNext-Regular", size: 56)
-            current += 1
-            self.progressLabel.text = "\(current) / \(words.count) words"
-            self.progressSlider.maximumValue = Float(words.count)
-            self.progressSlider.value = Float(current)
+            if current >= words.count {
+                let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "pop", userInfo: nil, repeats: false)
+            } else {
+                wordLabel.text = words[current]
+                wordLabel.font = UIFont(name: "AvenirNext-Regular", size: 56)
+                current += 1
+                self.progressLabel.text = "\(current) / \(words.count) words"
+                self.progressSlider.maximumValue = Float(words.count)
+                self.progressSlider.value = Float(current)
+            }
         }
         
         let speed = Double(1 / (speedSlider.value / 60))
         let timer = NSTimer.scheduledTimerWithTimeInterval(speed, target: self, selector: "updateWord", userInfo: nil, repeats: false)
+    }
+    
+    func pop() {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     override func prefersStatusBarHidden() -> Bool {
