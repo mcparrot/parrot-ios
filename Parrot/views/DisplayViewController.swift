@@ -164,10 +164,22 @@ class DisplayViewController: UIViewController {
     }
     
     func updateWord() {
+        var speed = Double(1 / (speedSlider.value / 60))
+        
         if !paused {
             if current >= words.count {
                 let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "pop", userInfo: nil, repeats: false)
+                return
             } else {
+                let word = words[current]
+                
+                let characters: [String: Int] = [",": 2, ";": 2, ".": 3, "!": 3, "?": 3]
+                for char in characters.keys {
+                    if word.rangeOfString(char) != nil {
+                        speed *= Double(characters[char]!)
+                    }
+                }
+                
                 wordLabel.text = words[current]
                 wordLabel.font = UIFont(name: "AvenirNext-Regular", size: 56)
                 current += 1
@@ -177,7 +189,6 @@ class DisplayViewController: UIViewController {
             }
         }
         
-        let speed = Double(1 / (speedSlider.value / 60))
         let timer = NSTimer.scheduledTimerWithTimeInterval(speed, target: self, selector: "updateWord", userInfo: nil, repeats: false)
     }
     
